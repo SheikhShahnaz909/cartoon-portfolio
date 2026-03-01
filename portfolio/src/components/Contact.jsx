@@ -1,8 +1,19 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { CONTACT_LINKS } from "../data/episodes";
 import EpisodeHeader from "./EpisodeHeader";
 
-function FormField({ label, type = "text", placeholder, value, onChange, name, error }) {
+
+
+function FormField({
+  label,
+  type = "text",
+  placeholder,
+  value,
+  onChange,
+  name,
+  error,
+}) {
   return (
     <div className="ig">
       <label>{label}</label>
@@ -19,10 +30,16 @@ function FormField({ label, type = "text", placeholder, value, onChange, name, e
   );
 }
 
+//contact 
+
 function ContactForm({ onSent }) {
   const [form, setForm] = useState({
-    name: "", email: "", subject: "", message: "",
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
+
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
 
@@ -35,7 +52,8 @@ function ContactForm({ onSent }) {
     const e = {};
     if (!form.name.trim()) e.name = "Name is required";
     if (!form.email.trim()) e.email = "Email is required";
-    else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = "Enter a valid email";
+    else if (!/\S+@\S+\.\S+/.test(form.email))
+      e.email = "Enter a valid email";
     if (!form.message.trim()) e.message = "Message is required";
     return e;
   };
@@ -49,51 +67,23 @@ function ContactForm({ onSent }) {
 
     setSending(true);
 
-    // OPTION 1: EmailJS (free email service)
-    // Sign up at emailjs.com, get your keys, and uncomment this:
-    /*
     try {
       await emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+        "service_vh0u6ev",       
+        "template_5ie0f8q",      
         {
           from_name: form.name,
           from_email: form.email,
           subject: form.subject,
           message: form.message,
         },
-        'YOUR_PUBLIC_KEY'
+        "1tQn_vODyKltrEloS"       
       );
-      onSent(true);
-    } catch (error) {
-      console.error('Email error:', error);
-      alert('Failed to send message. Please try again or email directly.');
-    }
-    */
 
-    // OPTION 2: Formspree (easiest - no code needed)
-    // Just create a form at formspree.io and replace the URL
-    try {
-      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          subject: form.subject,
-          message: form.message,
-        }),
-      });
-      
-      if (response.ok) {
-        onSent(true);
-      } else {
-        throw new Error("Send failed");
-      }
+      onSent(form.email);
     } catch (error) {
-      console.error("Send error:", error);
-      
-      onSent(true);
+      console.error("Email error:", error);
+      alert("Failed to send message. Please try again.");
     }
 
     setSending(false);
@@ -105,16 +95,17 @@ function ContactForm({ onSent }) {
         <FormField
           label="Your Name"
           name="name"
-          placeholder="e.g. Alex Kim"
+          placeholder="e.g. Shahnaz 🌸"
           value={form.name}
           onChange={update}
           error={errors.name}
         />
+
         <FormField
           label="Email Address"
           name="email"
           type="email"
-          placeholder="alex@email.com"
+          placeholder="you@gmail.com"
           value={form.email}
           onChange={update}
           error={errors.email}
@@ -124,7 +115,7 @@ function ContactForm({ onSent }) {
       <FormField
         label="Subject"
         name="subject"
-        placeholder="Let's collab! 🌸"
+        placeholder="Let's collaborate! 💗"
         value={form.subject}
         onChange={update}
       />
@@ -133,12 +124,14 @@ function ContactForm({ onSent }) {
         <label>Message</label>
         <textarea
           rows={4}
-          placeholder="Tell me about your project or just say hi!"
+          placeholder="Tell me about your project..."
           value={form.message}
           onChange={(e) => update("message", e.target.value)}
           className={errors.message ? "error" : ""}
         />
-        {errors.message && <span className="form-error">{errors.message}</span>}
+        {errors.message && (
+          <span className="form-error">{errors.message}</span>
+        )}
       </div>
 
       <button
@@ -148,28 +141,6 @@ function ContactForm({ onSent }) {
       >
         {sending ? "Sending... ✨" : "Send Message 💌"}
       </button>
-
-      <div className="form-hint">
-        💡 
-        <a
-          href="https://formspree.io"
-          target="_blank"
-          rel="noreferrer"
-          style={{ color: "#ec4899", textDecoration: "underline" }}
-        >
-          Formspree
-        </a>{" "}
-        or{" "}
-        <a
-          href="https://emailjs.com"
-          target="_blank"
-          rel="noreferrer"
-          style={{ color: "#ec4899", textDecoration: "underline" }}
-        >
-          Email
-        </a>{" "}
-      
-      </div>
     </div>
   );
 }
@@ -182,9 +153,6 @@ function SuccessCard({ email }) {
       <p className="success-sub">
         Thanks for reaching out — I'll reply to <strong>{email}</strong> soon 💗
       </p>
-      <div className="success-ep">
-        📺 End of Episode 05 · See you in Season 2! 🌸
-      </div>
       <button
         className="btn-outline"
         onClick={() => window.location.reload()}
@@ -211,18 +179,17 @@ export default function Contact() {
         <EpisodeHeader
           ep="📺 Episode 05 · Season Finale"
           title="Let's Connect! 💌"
-          subtitle="Day's almost done. Before she closes her laptop — she's waiting for your message. 🌙"
+          subtitle="Before she closes her laptop — she's waiting for your message. 🌙"
           center
         />
 
         <div className="contact-grid">
-          {/* Left: links */}
-          <div className="reveal contact-info" style={{ transitionDelay: "0.05s" }}>
+          <div className="reveal contact-info">
             <h3>Let's build something beautiful together 🌸</h3>
             <p>
-              Available for freelance, internships &amp; full-time roles. The
-              DMs are open — don't be shy!
+              Available for freelance, internships & full-time roles.
             </p>
+
             {CONTACT_LINKS.map(({ icon, label, value, href }) => (
               <a
                 key={label}
@@ -239,8 +206,7 @@ export default function Contact() {
               </a>
             ))}
           </div>
-
-          <div className="reveal" style={{ transitionDelay: "0.15s" }}>
+          <div className="reveal">
             {sent ? (
               <SuccessCard email={sentEmail} />
             ) : (
