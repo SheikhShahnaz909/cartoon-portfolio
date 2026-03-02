@@ -63,9 +63,9 @@ export default function About() {
           <div className="reveal" style={{ transitionDelay: "0.1s" }}>
             <OsWindow />
             <div className="stat-row">
-              <StatBox num="3+" label="Projects" />
+              <StatBox num="10+" label="Projects" />
               <StatBox num="5+" label="Skills" />
-              <StatBox num="☕∞" label="Coffees" />
+              <StatBox num="☕∞" label="Chai" />
             </div>
           </div>
 
@@ -81,8 +81,8 @@ export default function About() {
               Shahnaz specializes in{" "}
               <strong className="highlight">React</strong>,{" "}
               <strong className="highlight">Tailwind CSS</strong>, and{" "}
-              <strong className="highlight">Framer Motion</strong>. She turns
-              designs into pixel-perfect, animated interfaces that users actually enjoy.
+              <strong className="highlight">JavaScript</strong>. She has a passion for crafting
+              beautiful, user-friendly interfaces and bringing designs to life on the web.
             </p>
             <p>
               When not coding: she reads, listens to music, spends time with her cat and

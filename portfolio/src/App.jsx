@@ -7,6 +7,7 @@ import About from "./components/About";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import PastelCat from "./components/PastelCat";
 import CompanionSimple from "./components/CompanionSimple";
 import Footer from "./components/Footer";
 
@@ -27,6 +28,7 @@ export default function App() {
         <Skills />
         <Projects />
         <Contact />
+        <PastelCat />
       </main>
 
       <Footer />
