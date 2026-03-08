@@ -174,8 +174,8 @@ await emailjs.send(
 **Shahnaz** — Frontend Developer & UI Enthusiast
 
 - GitHub: [@SheikhShahnaz909](https://github.com/SheikhShahnaz909)
-- LinkedIn: [Sheikh Shahnaz](https://linkedin.com/in/sheikh-shahnaz)
-- Email: sheikhshahnaz909@email.com
+- LinkedIn: [Sheikh Shahnaz]((https://www.linkedin.com/in/sheikh-shahnaz-856a72310/))
+- Email: sheikhshahnaz909@gmail.com
 
 ---
 
