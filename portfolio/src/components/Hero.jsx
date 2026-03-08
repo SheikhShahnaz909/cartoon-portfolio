@@ -103,7 +103,7 @@ export default function Hero() {
           </p>
 
           <div className="reveal hero-tags" style={{ transitionDelay: "0.3s" }}>
-            {["⚛️ React", "🎨 Tailwind", "✨ Framer Motion", "💻 JavaScript"].map(
+            {["⚛️ React", "🎨 Tailwind", "💻 JavaScript"].map(
               (t) => (
                 <span key={t} className="tag">
                   {t}
